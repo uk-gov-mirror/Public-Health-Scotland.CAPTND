@@ -212,7 +212,7 @@ of the improved data quality of submissions, rather than an actual increase in s
 
 <Div custom-style = "Bullet 1">
 Of the `r figs_apps_qt$current_qt` appointments recorded, `r figs_tot_apps[[1,2]]` had an attendance status of 'Did Not Attend (DNA)' 
-resulting in a total DNA rate of `r figs_tot_apps[[1,3]] ` for all appointments.
+resulting in a total DNA risk of `r figs_tot_apps[[1,3]] ` for all appointments.
 </Div>
 
 
@@ -454,13 +454,13 @@ The apparent increase in total appointments since `r date_label_5qt` may be
 reflective of improved data quality rather than necessarily representing an actual
 increase in service demand.  
 
-The Did Not Attend (DNA) rate is an important measure to consider, as DNA appointments
+The Did Not Attend (DNA) risk is an important measure to consider, as DNA appointments
 are difficult to fill due to the unplanned nature of the non-attendance (see
 [Glossary](#glossary) section for more information). Of the `r figs_apps_qt$current_qt`
-total appointments in the quarter ending `r date_label`, the overall DNA rate was `r figs_tot_apps[[1,3]]`
+total appointments in the quarter ending `r date_label`, the overall DNA risk was `r figs_tot_apps[[1,3]]`
 (`r figs_tot_apps[[1,2]]` appointments not attended).  
 
-<Div custom-style = "Table or chart caption">Table 3: CAMHS total appointments and total DNA rate by health board, quarter ending `r date_label` ^a,b,c^</Div>
+<Div custom-style = "Table or chart caption">Table 3: CAMHS total appointments and total DNA risk (%) by health board, quarter ending `r date_label` ^a,b,c^</Div>
 ```{r Total appt DNA table, ft.align = "left"}
 
 flextable(table_data3, theme_fun = NULL) %>%
@@ -518,16 +518,16 @@ were first contact appointments (Table 4). The first contact appointment is the 
 appointment date a patient is offered in their treatment journey 
 (see [Glossary](#glossary) section for more information).  
 
-The first contact DNA rate is represented as the proportion of all planned first
+The first contact DNA risk is represented as the proportion of all planned first
 contact appointments which were not attended. DNAs in first contact appointments
-represent a delay to treatment starting. The CAMHS first contact DNA rate across NHS Scotland in the
+represent a delay to treatment starting. The CAMHS first contact DNA risk across NHS Scotland in the
 latest quarter was `r figs_1st_apps$"1st contact DNA rate"`, representing
 `r figs_1st_apps$"1st contact DNA"` of `r figs_1st_apps$"1st contact appointments"`
 first contact appointments.  
 
 \newpage
 
-<Div custom-style = "Table or chart caption">Table 4: CAMHS first contact appointments and first contact DNA rate by health board, quarter ending `r date_label`, with DNA rate for first contact appointments ^a,b^</Div>
+<Div custom-style = "Table or chart caption">Table 4: CAMHS first contact appointments and first contact DNA risk (%) by health board, quarter ending `r date_label`, with DNA risk for first contact appointments ^a,b^</Div>
 
 ```{r Appointments table, ft.align = "left"}
 
@@ -547,28 +547,28 @@ flextable(table_data4, theme_fun = NULL) %>%
 a. \ \ \ CAPTND extract `r data_analysis_latest_date`
 <br>
 
-The first contact DNA rate for CAMHS has shown variability between geographic 
+The first contact DNA risk for CAMHS has shown variability between geographic 
 regions over the publication period from `r date_label_5qt` to `r date_label`. 
-First contact DNA rates have typically been highest across the West. This region has also 
-seen greater consistency in the rates recorded over the 15 month period published 
-compared to the other health board regions. The increase in first contact DNA rates 
+First contact DNA risk has typically been highest across the West. This region has also 
+seen greater consistency in the risk recorded over the 15 month period published 
+compared to the other health board regions. The increase in first contact DNA risk 
 in the East from September 2025 onwards is likely attributable to changes in methodologies
 used to extract data at board level in NHS Lothian, rather than reflecting a true increase 
-in patient non-attendance. Since September 2025, first contact DNA rates across health 
+in patient non-attendance. Since September 2025, first contact DNA risk across health 
 board regions have tracked at very similar rates month to month (Figure 10) 
 (see [Glossary](#glossary) section for more information).  
 
-<Div custom-style = "Table or chart caption">Figure 10: First contact DNA rate by health board region, `r date_label_5qt` to `r date_label`^a^</Div>
+<Div custom-style = "Table or chart caption">Figure 10: First contact DNA risk (%) by health board region, `r date_label_5qt` to `r date_label`^a^</Div>
 ```{r Appointment DNA rate table, fig.width=7.18, fig.height=3.31, include = TRUE}
 
 knitr::include_graphics(paste0("//PHI_conf/MentalHealth5/CAPTND/CAPTND_shorewise/output/analysis_", data_analysis_latest_date, "/shorewise_publication/data/appointments_firstcon/dna_rate_trend_region_CAMHS.png"))
 
 ```
 <Div custom-style = "Table or chart note">
-a.	Variability in first contact DNA rates in the East region between `r date_label_5qt` and `r date_label` are likely due to NHS Lothian updating the report used for data extraction at board level.
+a.	Variability in first contact DNA risk in the East region between `r date_label_5qt` and `r date_label` are likely due to NHS Lothian updating the report used for data extraction at board level.
 <br>
 
-There are many factors which may influence the DNA rate, of which relative deprivation
+There are many factors which may influence patient DNA risk, of which relative deprivation
 may be one. Individuals from the most deprived areas were more likely
 to DNA a first contact appointment (`r figs_dna_simd[[1,10]]`%) compared with those from
 the least deprived areas (`r figs_dna_simd[[5,10]]`%) across NHS Scotland for the 
@@ -577,7 +577,7 @@ section for more information).
 
 \newpage
 
-<Div custom-style = "Table or chart caption">Figure 11: First contact DNA rate by SIMD quintile, NHS Scotland, quarter ending `r date_label`</Div>
+<Div custom-style = "Table or chart caption">Figure 11: First contact DNA risk (%) by SIMD quintile, NHS Scotland, quarter ending `r date_label`</Div>
 ```{r Appointment DNA rate by SIMD table, fig.width=7.18, fig.height=3.31, include = TRUE}
 
 knitr::include_graphics(paste0("//PHI_conf/MentalHealth5/CAPTND/CAPTND_shorewise/output/analysis_", data_analysis_latest_date, "/shorewise_publication/data/appointments_firstcon/dna_simd_plot_last_qt_CAMHS.png"))
@@ -625,12 +625,12 @@ individual can have more than one appointment on a given day.
 **First contact appointment**  
 The first appointment date that appears in an individual's care pathway.
 
-**DNA Rate**  
+**DNA risk**  
 Did not attend (DNA) refers to appointments in which a patient did not attend and
-gave no prior warning. The DNA rate is the proportion of appointments for which
+gave no prior warning. The DNA risk is the proportion of appointments for which
 this occurs out of all appointments in a given period. If for first contact appointments only this
-is referred to as the *first contact DNA rate*.
-
+is referred to as the *first contact DNA risk*.   
+    
 **Region**  
 The health boards that make up NHS Scotland can be divided into three geographical
 regions:  

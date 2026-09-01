@@ -212,15 +212,19 @@ update_dna_dt_values <- function(wb){
            nhs_scot_tot_apps = sum(tot_apps),
            nhs_scot_att_rate = round(nhs_scot_tot_dnas/nhs_scot_tot_apps*100,1),
            att_rate = case_when(apps_att == 0 & tot_apps == 0 ~ 0,
-                                TRUE ~ att_rate))
+                                TRUE ~ att_rate)) |>
+    group_by(dataset_type, loc_label) |>
+    mutate(tot_appt_by_loc = sum(tot_apps))
   
   df_tot_dna_loc_sex <- df_tot_dna_loc_sex |>
     group_by(dataset_type, loc_label) |>
     mutate(all_appts = sum(tot_apps)) |>
     filter(loc_label != 'Data missing') |>
     group_by(dataset_type, sex_reported) |>
-    slice_max(order_by = all_appts, n = 10) |> ungroup() |>
-    mutate(perc_tot_apps = round(tot_apps/nhs_scot_tot_apps*100, 1)) |>
+    slice_max(order_by = tot_appt_by_loc, n = 10) |> ungroup() |>
+    mutate(loc_label = case_when(loc_label == "Patients home" ~ "Patient's home",
+                                 TRUE ~ loc_label),
+           perc_tot_apps = round(tot_apps/nhs_scot_tot_apps*100, 1)) |>
     select(dataset_type, hb_name, Attendance, sex_reported, loc_label, apps_att, tot_apps, perc_tot_apps,
            att_rate, nhs_scot_tot_dnas, nhs_scot_tot_apps, nhs_scot_att_rate) |>
     filter(dataset_type == dataset_choice) 
@@ -239,7 +243,7 @@ update_dna_dt_values <- function(wb){
   addStyle(wb, sheet = "Tab 5", style = createStyle(halign = "right"), cols = 6, rows = 29:39, stack = TRUE)
   
   df_loc <- df_tot_dna_loc_sex |> filter(dataset_type == dataset_choice) |> 
-    arrange(dataset_type, sex_reported, desc(tot_apps)) 
+    arrange(dataset_type, sex_reported) 
   
   df_loc_male <- df_loc |> filter(sex_reported == 'Male') |> select(loc_label)
   
@@ -283,10 +287,14 @@ update_dna_dt_values <- function(wb){
            simd2020_quintile == 1,
            loc_label != 'Data missing') |>
     group_by(dataset_type, simd2020_quintile) |>
-    slice_max(order_by = tot_apps, n = 10) |> ungroup () |>
+    slice_max(order_by = tot_appt_by_loc, n = 10) |> ungroup () |>
+    arrange(desc(tot_appt_by_loc)) |>
     mutate(perc_tot_apps = round(tot_apps/nhs_scot_tot_apps*100, 1),
+           loc_label = case_when(loc_label == "Patients home" ~ "Patient's home",
+                                 TRUE ~ loc_label),
            loc_label = factor(loc_label, levels = unique(loc_label))) |>
-    relocate(perc_tot_apps, .before = 'att_rate') |> ungroup()
+    relocate(perc_tot_apps, .before = 'att_rate') |>
+    select(-tot_appt_by_loc)
            
   #simd 5
   df_tot_dna_loc_simd5 <- df_tot_dna_loc_simd |>
@@ -294,10 +302,14 @@ update_dna_dt_values <- function(wb){
            simd2020_quintile == 5,
            loc_label != 'Data missing') |>
     group_by(dataset_type, simd2020_quintile) |>
-    slice_max(order_by = tot_apps, n = 10) |> ungroup () |>
+    slice_max(order_by = tot_appt_by_loc, n = 10) |> ungroup () |>
+    arrange(desc(tot_appt_by_loc)) |>
     mutate(perc_tot_apps = round(tot_apps/nhs_scot_tot_apps*100, 1),
+           loc_label = case_when(loc_label == "Patients home" ~ "Patient's home",
+                                 TRUE ~ loc_label),
            loc_label = factor(loc_label, levels = unique(loc_label))) |>
-    relocate(perc_tot_apps, .before = 'att_rate') |> ungroup()
+    relocate(perc_tot_apps, .before = 'att_rate') |>
+    select(-tot_appt_by_loc)
   
   df_tot_dna_loc_simd <- rbind(df_tot_dna_loc_simd1, df_tot_dna_loc_simd5)
   

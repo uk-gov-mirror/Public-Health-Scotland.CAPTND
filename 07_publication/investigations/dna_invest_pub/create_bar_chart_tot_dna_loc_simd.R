@@ -19,15 +19,21 @@ create_bar_chart_tot_dna_loc_simd <- function(dataset_choice){
            att_rate = round(apps_att/tot_apps*100,1)) |>
     filter(Attendance == 'Patient DNA',
            !is.na(loc_label) & loc_label != 'Data missing',
-           !is.na(simd2020_quintile) & simd2020_quintile != 'Not known')
+           !is.na(simd2020_quintile) & simd2020_quintile != 'Not known') |>
+    group_by(dataset_type, loc_label) |>
+    mutate(scot_tot_appts = sum(tot_apps))
   
   #simd 1
   plot_data_simd1 <- last_pub_period_tot_dna_loc_simd |>
     filter(!!sym(dataset_type_o) == dataset_choice,
            simd2020_quintile == 1) |>
     group_by(dataset_type) |>
-    slice_max(order_by = tot_apps, n = 10) |>
-    mutate(loc_label = factor(loc_label, levels = unique(loc_label)),
+    slice_max(order_by = scot_tot_appts, n = 10) |>
+    #slice_max(order_by = tot_apps, n = 10) |>
+    arrange(desc(scot_tot_appts)) |>
+    mutate(loc_label = case_when(loc_label == "Patients home" ~ "Patient's home",
+                                 TRUE ~ loc_label),,
+           loc_label = factor(loc_label, levels = unique(loc_label)),
            all_other_appts = tot_apps - apps_att)
   
   lims = round_any(max(plot_data_simd1$tot_apps) + 5000, 2.5) # set upper limit of y axis
@@ -63,8 +69,12 @@ create_bar_chart_tot_dna_loc_simd <- function(dataset_choice){
     filter(!!sym(dataset_type_o) == dataset_choice,
            simd2020_quintile == 5) |>
     group_by(dataset_type) |>
-    slice_max(order_by = tot_apps, n = 10) |>
-    mutate(loc_label = factor(loc_label, levels = unique(loc_label)),
+    slice_max(order_by = scot_tot_appts, n = 10) |>
+    #slice_max(order_by = tot_apps, n = 10) |>
+    arrange(desc(scot_tot_appts)) |>
+    mutate(loc_label = case_when(loc_label == "Patients home" ~ "Patient's home",
+                                 TRUE ~ loc_label),
+           loc_label = factor(loc_label, levels = unique(loc_label)),
            all_other_appts = tot_apps - apps_att)
   
   lims = round_any(max(plot_data_simd5$tot_apps) + 5000, 2.5) # set upper limit of y axis
