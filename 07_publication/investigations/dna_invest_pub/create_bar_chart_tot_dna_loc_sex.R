@@ -32,7 +32,9 @@ create_bar_chart_tot_dna_loc_sex <- function(dataset_choice){
     mutate(all_appts = sum(tot_apps)) |>
     group_by(dataset_type, sex_reported) |>
     slice_max(order_by = all_appts, n = 10) |>
-    mutate(loc_label = factor(loc_label, levels = unique(loc_label)))
+    mutate(loc_label = case_when(loc_label == "Patients home" ~ "Patient's home",
+                                 TRUE ~ loc_label),
+           loc_label = factor(loc_label, levels = unique(loc_label)))
   
   lims = round_any(max(plot_data$att_rate) + 3, 2.5) # set upper limit of y axis
   

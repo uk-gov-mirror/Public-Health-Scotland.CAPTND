@@ -243,14 +243,12 @@ Across NHS Scotland, there were a total of **284,035** appointments recorded in 
 for the publication period between April 2025 and June 2026. Data broken down by 
 quarters can be seen in the accompanying [data files](https://publichealthscotland.scot/publications/child-adolescent-and-psychological-therapies-national-dataset-captnd/child-and-adolescent-mental-health-services-in-child-adolescent-and-psychological-therapies-national-dataset-1-september-2026/).     
     
-Appointments where the patient did not attend (DNA) is an important measure to 
-consider, as DNA appointments are difficult to fill due to the unplanned nature 
-of the non-attendance (see [Glossary](#glossary) section for more information). 
-Of the **284,035** total appointments scheduled for the 15-month publication period
+Appointments where the patient did not attend (DNA) is an important measure to consider,
+as DNA appointments contribute to health inequalities and a substantial amount of
+lost capacity within services, potentially impacting patient care and waiting times for 
+treatment. Of the **284,035** total appointments scheduled for the 15-month publication period
 ending June 2026, the overall DNA percentage risk was **9.0%** (**25,643** appointments not 
-attended and without adequate notification). This represents a substantial amount 
-of lost capacity within CAMH services, potentially impacting the length of time 
-patients wait for treatment.   
+attended and without adequate notification). 
     
 <Div custom-style = "Table or chart caption">Table 1: CAMHS total appointments and total DNA risk (%) by health board, April 2025 to June 2026 ^a,b^</Div>
 ```{r Total appt DNA table, ft.align = "left"}
@@ -284,7 +282,7 @@ flextable(table_data7, theme_fun = NULL) %>%
 ```
 <Div custom-style = "Table or chart note">
 a. \ \ \ CAPTND extract `r data_analysis_latest_date`
-b. \ \ \ NHS Orkney were unable to submit CAMHS data for June 2026, therefore the NHS Orkney and NHS Scotland totals in this table are under-representative of true activity.
+b. \ \ \ NHS Orkney were unable to submit CAMHS data for June 2026, therefore the NHS Orkney and NHS Scotland totals in this table are likely an undercount of true activity.
 <br>
 
 ### CAMHS total appointment DNA risk by age group and sex
@@ -476,7 +474,7 @@ knitr::include_graphics(paste0("//PHI_conf/MentalHealth5/CAPTND/CAPTND_shorewise
 
 ```
 <Div custom-style = "Table or chart note">
-a. NHS Orkney were unable to submit CAMHS data for June 2026, therefore the North health board region total in this table is under-representative of true activity for the affected month.
+a. NHS Orkney were unable to submit CAMHS data for June 2026, therefore the North health board region total in this table is likely an undercount of true activity for the affected month.
 <br>
 
 ### CAMHS total appointment DNA risk by weekday of planned appointment
@@ -530,7 +528,7 @@ flextable(table_data8, theme_fun = NULL) %>%
 ```
 <Div custom-style = "Table or chart note">
 a. \ \ \ CAPTND extract `r data_analysis_latest_date`
-b. \ \ \ NHS Orkney were unable to submit CAMHS data for June 2026, therefore the NHS Orkney and NHS Scotland totals in this table are under-representative of true activity.
+b. \ \ \ NHS Orkney were unable to submit CAMHS data for June 2026, therefore the NHS Orkney and NHS Scotland totals in this table are likely an undercount of true activity.
 
 <br>
 
@@ -626,11 +624,11 @@ knitr::include_graphics(paste0("//PHI_conf/MentalHealth5/CAPTND/CAPTND_shorewise
 ```
 <Div custom-style = "Table or chart note">
 a. Variability in first contact DNA risk in the East region between `r date_label_5qt` and `r date_label` is likely due to NHS Lothian updating the report used for data extraction at board level. 
-b. NHS Orkney were unable to submit CAMHS data for June 2026, therefore the North health board region total in this table is under-representative of true activity for the affected month.
+b. NHS Orkney were unable to submit CAMHS data for June 2026, therefore the North health board region total in this table is likely an undercount of true activity for the affected month.
 <br>   
     
 * Please note that NHS Scotland totals in this report do not include data from NHS Orkney 
-for June 2026, and are therefore under-representative of true activity for the affected month.
+for June 2026, and are likely an undercount of true activity for the affected month.
     
 ## CAPTND quality assurance
 

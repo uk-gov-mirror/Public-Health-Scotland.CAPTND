@@ -219,13 +219,12 @@ Across NHS Scotland, there were a total of **630,597** appointments recorded in 
 for the publication period between April 2025 and June 2026. Data broken down by 
 quarters can be seen in the accompanying [data files](https://publichealthscotland.scot/publications/child-adolescent-and-psychological-therapies-national-dataset-captnd/psychological-therapies-in-child-adolescent-and-psychological-therapies-national-dataset-1-september-2026/).     
     
-Appointments where the patient did not attend (DNA) is an important measure to 
-consider, as DNA appointments are difficult to fill due to the unplanned nature of
-the non-attendance (see [Glossary](#glossary) section for more information). 
-Of the **630,597** total appointments scheduled for the 15-month publication period ending
+Appointments where the patient did not attend (DNA) is an important measure to consider,
+as DNA appointments contribute to health inequalities and a substantial amount of
+lost capacity within services, potentially impacting patient care and waiting times for 
+treatment. Of the **630,597** total appointments scheduled for the 15-month publication period ending
 June 2026, the overall DNA percentage risk was **9.6%** (**60,604** appointments not attended and
-without adequate notification). This represents a substantial amount of lost capacity
-within PT services, potentially impacting the length of time patients wait for treatment.   
+without adequate notification).    
     
 <Div custom-style = "Table or chart caption">Table 1: PT total appointments and total DNA risk (%) by health board, April 2025 to June 2026 ^a^</Div>
 ```{r Total appt DNA table, ft.align = "left"}
@@ -358,7 +357,7 @@ attending in person. It is, therefore, interesting to note that males across NHS
 Scotland were noticeably more likely to DNA these digital appointments compared to
 females over the 15-month publication period.    
     
-<Div custom-style = "Table or chart caption">Figure 5: Total appointment DNA rate (%) by location of planned appointment and sex reported at referral, NHS Scotland, April 2025 to June 2026 </Div>
+<Div custom-style = "Table or chart caption">Figure 5: Total appointment DNA risk (%) by location of planned appointment and sex reported at referral, NHS Scotland, April 2025 to June 2026 </Div>
 ```{r tot_dnas_by_loc_sex_chart, fig.width=7.18, fig.height=3.31, include = TRUE}
 
 knitr::include_graphics(paste0("//PHI_conf/MentalHealth5/CAPTND/CAPTND_shorewise/output/analysis_", data_analysis_latest_date, "/shorewise_publication/data/appointments_att/tot_dna_loc_sex_PT.png"))
